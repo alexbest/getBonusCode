@@ -90,15 +90,22 @@ class Bcode(object):
     def start(self):
         if self.login():
             while True:
+                code = None
+                cookie = None
                 while True:
                     now_time = get_now_time()
-                    start_time = get_timestamp(format_time(now_time)) + 5 * 60
+                    start_time = get_timestamp(format_time(now_time)) + 60 * 60
                     delta = start_time - now_time
+                    if delta <= 50 and code is None:
+                        print("开始预先获取验证码")
+                        code, cookie = self.get_captcha()
+                        continue
                     if delta <= 0:
                         break
                     if delta < 10:
                         time.sleep(delta + 0.2)
                         break
+
                     print(str(delta) + ' 秒后开始抢码')
                     time.sleep(10)
                 print('开始抢码')
@@ -106,9 +113,9 @@ class Bcode(object):
                 while i < 10:
                     print('第' + str(i) + '次')
                     i += 1
-                    code, cookie = self.get_captcha()
                     if code is not None:
                         if self.get_bcode(code, cookie):
                             break
+                    code, cookie = self.get_captcha()
         else:
             print('登录失败')
