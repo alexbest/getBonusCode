@@ -33,10 +33,11 @@ class Bcode(object):
 
     def get_captcha(self):
         url = "https://console.bonuscloud.io/api/web/captcha/get/"
-        response = download(url, file_name="cap.png")
+        png_file = "cap_" + self.bcUser + "_" + str(get_now_time()) + ".png"
+        response = download(url, file_name=png_file)
         print(dict(response.cookies.items()))
         rc = RClient(RUO_KUAI_USER, RUO_KUAI_PASSWORD, RUO_KUAI_SOFT_ID, RUO_KUAI_SOFT_KEY)
-        im = open("cap.png", 'rb').read()
+        im = open(png_file, 'rb').read()
         rc_result = rc.rk_create(im, 3060)
         # print(rc_result)
         if 'Result' in rc_result:
