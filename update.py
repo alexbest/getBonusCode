@@ -12,7 +12,7 @@ def check_update():
         if remote_version != local_version:
             print('检测到新版本，请前往：https://github.com/biheBlockChain/getBonusCode 更新')
             response = get('https://raw.githubusercontent.com/biheBlockChain/getBonusCode/master/update_desc')
-            print(response.text)
+            print("更新说明：\n" + response.text)
     except:
         print('检查新版本失败')
 

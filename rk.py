@@ -12,7 +12,10 @@ class RClient(object):
         if len(password) == 32:
             self.password = password
         else:
-            self.password = md5(password).hexdigest()
+            try:
+                self.password = md5(password.encode("utf-8")).hexdigest()
+            except:
+                print('若快登录失败，请在config.py中，使用md5后的值，详情查看：https://bbs.bihe.one/thread-1445.htm')
         self.soft_id = soft_id
         self.soft_key = soft_key
         self.base_params = {

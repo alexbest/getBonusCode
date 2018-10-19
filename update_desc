@@ -1,1 +1,2 @@
 添加提前获取验证码
+修复must be encoded before hashing错误
