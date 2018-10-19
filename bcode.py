@@ -49,7 +49,6 @@ class Bcode(object):
         self.mkdir('img')
         png_file = "img/cap_" + self.bcUser + "_" + str(get_now_time()) + ".png"
         response = download(url, file_name=png_file)
-        print(dict(response.cookies.items()))
         rc = RClient(RUO_KUAI_USER, RUO_KUAI_PASSWORD, RUO_KUAI_SOFT_ID, RUO_KUAI_SOFT_KEY)
         im = open(png_file, 'rb').read()
         rc_result = rc.rk_create(im, 3060)
@@ -89,6 +88,8 @@ class Bcode(object):
 
     def start(self):
         if self.login():
+            print('测试若快打码')
+            code, cookie = self.get_captcha()
             while True:
                 code = None
                 cookie = None
