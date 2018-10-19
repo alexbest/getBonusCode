@@ -103,7 +103,7 @@ class Bcode(object):
                         continue
                     if delta <= 0:
                         break
-                    if delta < 10:
+                    if delta <= 15:
                         time.sleep(delta + 0.2)
                         break
 

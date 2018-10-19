@@ -1,2 +1,1 @@
-添加提前获取验证码
-修复must be encoded before hashing错误
+修复整10倒计时，跳过抢购流程
