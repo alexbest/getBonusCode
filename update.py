@@ -7,6 +7,8 @@ def check_update():
     local_version = version.read()
     version.close()
     print('币合区块链博纳云抢码脚本,版本号：' + local_version)
+    print('使用时请同步好本地时间')
+    print('使用后面的邀请地址注册，更容易成功，博纳云注册：https://console.bonuscloud.io/signUp?refer=264a1ce0d14511e894a05731b778d621')
     print('更多工具请关注：币合区块链')
     print('币合官方群：490389116')
     try:
