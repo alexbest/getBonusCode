@@ -4,6 +4,7 @@ from config import *
 from date_utils import *
 from http_utils import *
 from rk import RClient
+import os
 
 
 class Bcode(object):
@@ -14,6 +15,18 @@ class Bcode(object):
     def __init__(self, username, password):
         self.bcUser = username
         self.bcPass = password
+
+    def mkdir(self, path):
+        path = path.strip()
+        path = path.rstrip("\\")
+        isExists = os.path.exists(path)
+
+        # 判断结果
+        if not isExists:
+            os.makedirs(path)
+            return True
+        else:
+            return False
 
     def login(self):
         if self.bcUser == '' or self.bcPass == '' or RUO_KUAI_USER == '' or RUO_KUAI_PASSWORD == '':
@@ -33,7 +46,8 @@ class Bcode(object):
 
     def get_captcha(self):
         url = "https://console.bonuscloud.io/api/web/captcha/get/"
-        png_file = "cap_" + self.bcUser + "_" + str(get_now_time()) + ".png"
+        self.mkdir('img')
+        png_file = "img/cap_" + self.bcUser + "_" + str(get_now_time()) + ".png"
         response = download(url, file_name=png_file)
         print(dict(response.cookies.items()))
         rc = RClient(RUO_KUAI_USER, RUO_KUAI_PASSWORD, RUO_KUAI_SOFT_ID, RUO_KUAI_SOFT_KEY)
@@ -78,7 +92,7 @@ class Bcode(object):
             while True:
                 while True:
                     now_time = get_now_time()
-                    start_time = get_timestamp(format_time(now_time)) + 60 * 60
+                    start_time = get_timestamp(format_time(now_time)) + 5 * 60
                     delta = start_time - now_time
                     if delta <= 0:
                         break
