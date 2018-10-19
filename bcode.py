@@ -52,10 +52,10 @@ class Bcode(object):
         rc = RClient(RUO_KUAI_USER, RUO_KUAI_PASSWORD, RUO_KUAI_SOFT_ID, RUO_KUAI_SOFT_KEY)
         im = open(png_file, 'rb').read()
         rc_result = rc.rk_create(im, 3060)
-        # print(rc_result)
         if 'Result' in rc_result:
             code = rc_result['Result']
         else:
+            print(rc_result)
             return None, None
         print('验证码为：', code)
         return code, dict(response.cookies.items())
