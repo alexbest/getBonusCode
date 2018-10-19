@@ -5,14 +5,17 @@ import zipfile
 def check_update():
     version = open('version', 'r')
     local_version = version.read()
+    version.close()
     print('币合区块链博纳云抢码脚本,版本号：' + local_version)
+    print('更多工具请关注：币合区块链')
+    print('币合官方群：490389116')
     try:
         response = get('https://raw.githubusercontent.com/biheBlockChain/getBonusCode/master/version')
         remote_version = response.text
         if remote_version != local_version:
             print('检测到新版本，请前往：https://github.com/biheBlockChain/getBonusCode 更新')
             response = get('https://raw.githubusercontent.com/biheBlockChain/getBonusCode/master/update_desc')
-            print("更新说明：\n" + response.text)
+            print("\n----------\n更新说明：\n" + response.text + "\n\n----------\n")
     except:
         print('检查新版本失败')
 
