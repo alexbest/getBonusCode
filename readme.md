@@ -2,6 +2,10 @@
 
 关注公众号： **币合区块链**。获取使用教程
 
+### 运行环境
+
+python3+
+
 ### 软件更新教程
 
 1.点击下载压缩包 [https://github.com/biheBlockChain/getBonusCode/archive/master.zip](https://github.com/biheBlockChain/getBonusCode/archive/master.zip)
