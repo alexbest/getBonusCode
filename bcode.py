@@ -48,7 +48,10 @@ class Bcode(object):
         url = "https://console.bonuscloud.io/api/web/captcha/get/"
         self.mkdir('img')
         png_file = "img/cap_" + self.bcUser + "_" + str(get_now_time()) + ".png"
-        response = download(url, file_name=png_file)
+        header = {
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+        }
+        response = download(url, headers=header, file_name=png_file)
         rc = RClient(RUO_KUAI_USER, RUO_KUAI_PASSWORD, RUO_KUAI_SOFT_ID, RUO_KUAI_SOFT_KEY)
         im = open(png_file, 'rb').read()
         rc_result = rc.rk_create(im, 3060)
