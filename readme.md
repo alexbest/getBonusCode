@@ -17,6 +17,10 @@
 
 ### 多账号使用
 
-`python multi_user.py`
+ config.py 配置好若快的账号密码
+
+执行 `python multi_user.py`
+
+根据提示输入博纳云账号密码
 
 ![](https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=MzUyNzYzOTE1Mg==&mid=2247483718&idx=1&sn=39dbf5a7df237b6f5e87e8c555c85273&send_time=)
