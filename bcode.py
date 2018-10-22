@@ -37,6 +37,8 @@ class Bcode(object):
         }
         response = post('https://console.bonuscloud.io/api/user/login/', json.dumps(payload))
         data = response.json()
+        print('本地时间：' + format_time1(get_now_time()))
+        print('服务器时间：'+response.headers.get('date'))
         if 'code' in data:
             if data['code'] == 200:
                 print("登录成功")
