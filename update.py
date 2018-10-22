@@ -6,8 +6,8 @@ def check_update():
     version = open('version', 'r')
     local_version = version.read()
     version.close()
-    print('version：' + local_version)
-    print('register：https://console.bonuscloud.io/signUp?refer=264a1ce0d14511e894a05731b778d621')
+    print('version' + local_version)
+    print('register https://console.bonuscloud.io/signUp?refer=264a1ce0d14511e894a05731b778d621')
     print('https://bbs.bihe.one/thread-1445.htm')
     try:
         response = get('https://raw.githubusercontent.com/biheBlockChain/getBonusCode/master/version')
