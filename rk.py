@@ -15,7 +15,7 @@ class RClient(object):
             try:
                 self.password = md5(password.encode("utf-8")).hexdigest()
             except:
-                print('若快登录失败，请在config.py中，使用md5后的值，详情查看：https://bbs.bihe.one/thread-1445.htm')
+                print('https://bbs.bihe.one/thread-1445.htm')
         self.soft_id = soft_id
         self.soft_key = soft_key
         self.base_params = {
@@ -32,8 +32,6 @@ class RClient(object):
 
     def rk_create(self, im, im_type, timeout=60):
         """
-        im: 图片字节
-        im_type: 题目类型
         """
         params = {
             'typeid': im_type,
@@ -46,7 +44,6 @@ class RClient(object):
 
     def rk_report_error(self, im_id):
         """
-        im_id:报错题目的ID
         """
         params = {
             'id': im_id,

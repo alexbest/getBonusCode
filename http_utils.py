@@ -36,6 +36,7 @@ def post(url, payload='{}', cookie=None):
 
 
 def download(url, headers=None, file_name=''):
+
     response = requests.get(url, headers=headers, verify=False)
     with open(file_name, "wb") as code:
         code.write(response.content)

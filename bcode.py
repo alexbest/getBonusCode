@@ -39,7 +39,7 @@ class Bcode(object):
         data = response.json()
         if 'code' in data:
             if data['code'] == 200:
-                print("登录成功")
+                print("login success")
                 self.cookies.update(response.cookies.items())
                 return True
         return False
@@ -60,7 +60,7 @@ class Bcode(object):
         else:
             print(rc_result)
             return None, None
-        print('验证码为：', code)
+        print('code：', code)
         return code, dict(response.cookies.items())
 
     def get_bcode(self, code, cookie):
@@ -72,18 +72,18 @@ class Bcode(object):
         if 'code' in data:
             code = data['code']
             if code == 200:
-                print("抢码成功")
+                print("get bcode success")
                 return True
         if 'message' in data:
             message = data['message']
             if 'maximum in this time period' in message:
-                print('该时段已抢购成功')
+                print('successed')
                 return True
             elif 'next time' in message:
-                print('该时段已抢完')
+                print('no code')
                 return True
             elif 'captcha error' in message:
-                print('验证码有误')
+                print('captcha error')
                 return False
             else:
                 print(data['message'])
@@ -91,7 +91,7 @@ class Bcode(object):
 
     def start(self):
         if self.login():
-            print('测试若快打码')
+            print('testing')
             code, cookie = self.get_captcha()
             while True:
                 code = None
@@ -101,8 +101,8 @@ class Bcode(object):
                     start_time = get_timestamp(format_time(now_time)) + 60 * 60
                     delta = start_time - now_time
                     if delta <= 50 and code is None:
-                        print("开始预先获取验证码")
-                        code, cookie = self.get_captcha()
+                        print("getting code")
+                        code, cookie = self.get_captcha(start_time + 1)
                         continue
                     if delta <= 0:
                         break
@@ -110,16 +110,16 @@ class Bcode(object):
                         time.sleep(delta + 0.2)
                         break
 
-                    print(str(delta) + ' 秒后开始抢码')
+                    print(str(delta) + ' s')
                     time.sleep(10)
-                print('开始抢码')
+                print('getting')
                 i = 1
                 while i < 10:
-                    print('第' + str(i) + '次')
+                    print('times:' + str(i))
                     i += 1
                     if code is not None:
                         if self.get_bcode(code, cookie):
                             break
                     code, cookie = self.get_captcha()
         else:
-            print('登录失败')
+            print('login failed')
