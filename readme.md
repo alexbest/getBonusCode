@@ -1,5 +1,11 @@
 # 博纳云抢码脚本
 
+
+**java版抢码已经上线，速度更快。更容易抢到**
+
+[https://github.com/biheBlockChain/getBonusCode-java](https://github.com/biheBlockChain/getBonusCode-java)
+
+
 关注公众号： **币合区块链**。获取使用教程
 
 ### 运行环境
